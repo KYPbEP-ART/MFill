@@ -1,35 +1,50 @@
-# 📄 School Doc Constructor — Статус проекта
+# MFill — School Doc Constructor
 
-## 🛠 Стек
-- **OS:** NixOS (unstable)
-- **App:** Tauri v2 + Rust + TypeScript + Vite
-- **UI:** Vanilla TS + CSS (без фреймворков)
+Десктоп-приложение для генерации документов из шаблонов.  
+**Статус:** активная разработка. Ядро парсера и CLI работают, GUI в процессе.
+
+## Что это
+
+Инструмент для автоматизации рутинной работы с документами:  
+заполнение шаблонов, массовая генерация, конвертация форматов.  
+Работает локально, без интернета и облаков.
+
+## Что уже работает
+
+- Парсер DSL для разметки документов: `{{id:Label}}`
+- Вложенный язык разметки полей ввода
+- Импорт `.json`-шаблонов через нативный диалог (Tauri plugin-dialog)
+- Сохранение `recentFiles` в app data dir
+- Хот-релоад Vite (CSS/TS)
+- Нативное окно через `pnpm tauri dev`
+
+## В разработке
+
+- Вкладка редактора с парсингом `{{id:Label}}`
+- GUI на Tiptap
+- Обработка ошибок парсера
+- Тесты парсера (pytest / cargo test)
+
+## Стек
+
+- **Backend:** Rust, Tauri v2
+- **Frontend:** TypeScript, Vite, Vanilla TS + CSS (без фреймворков)
+- **Plugins:** `fs`, `dialog`, `shell`
 - **Package manager:** pnpm
+- **OS (dev):** NixOS (unstable)
 
-## ⚙️ Окружение (КРИТИЧНО)
-- Проект запускается **только через `nix-shell`** (или `direnv allow`)
-- Файл `shell.nix` в корне настраивает `PKG_CONFIG_PATH` для GTK/WebKit
-- Глобальные `.dev` пакеты убраны из `configuration.nix` — всё в `shell.nix`
+## Про DSL
 
-## 📁 Структура
-- `index.html` — в корне (entry point для Vite)
-- `src/main.ts` — точка входа JS, импортирует `styles.css`
-- `src-tauri/` — Rust бэкенд, `capabilities/default.json` для прав
+Почему свой язык, а не готовый шаблонизатор:  
+стандартные решения (Handlebars, Mustache) не покрывали вложенную разметку полей ввода —  
+нужно было описывать не только «что подставить», но и «как это поле должно выглядеть и валидироваться».  
+Поэтому синтаксис `{{id:Label}}` расширен вложенным языком для полей.
 
-## ✅ Что уже работает
-- [x] `pnpm tauri dev` запускает нативное окно
-- [x] Хот-релоад Vite (CSS/TS)
-- [x] Базовое меню с выпадающими списками (через класс `.show`)
-- [x] Tauri plugins: `fs`, `dialog`, `shell` подключены в Rust и JS
+## Запуск (dev)
 
-## 🚧 Что делаем сейчас
-- [ ] Реальный импорт `.json` шаблонов через `@tauri-apps/plugin-dialog`
-- [ ] Сохранение `recentFiles` в `appDataDir`
-- [ ] Вкладка редактора с парсингом `{{id:Label}}`
+Требуется NixOS + `nix-shell` (или `direnv allow`):
 
-## 🆘 Если что-то сломалось
-1. Проверь, что в `nix-shell`
-2. `rm -rf src-tauri/target && pnpm tauri dev`
-3. Ошибка `pkg-config ... not found`, проверь `shell.nix`
-
-«Привет! Я Макар, разрабатываю Tauri v2 приложение на NixOS. Вот контекст: [вставляешь содержимое PROJECT_STATUS.md]. Помоги мне с [твоя задача]».
+```bash
+nix-shell
+pnpm install
+pnpm tauri dev
