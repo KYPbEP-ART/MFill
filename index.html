@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Constructor</title>
+  <!-- Базовые стили + стили редактора -->
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/styles/editor.css" />
+</head>
+<body>
+  <!-- 🔝 Глобальное меню (остаётся в index, т.к. видно везде) -->
+  <nav class="app-menu">
+    <ul class="menu-list">
+      <li class="menu-item">
+        <button class="menu-trigger">Файл ▾</button>
+        <ul class="dropdown">
+          <li data-action="new">Новый</li>
+          <li data-action="open">Открыть</li>
+          <li data-action="save">Сохранить</li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <button class="menu-trigger">Правка ▾</button>
+        <ul class="dropdown">
+          <li data-action="undo">Отменить</li>
+          <li data-action="redo">Повторить</li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <button class="menu-trigger">Вид ▾</button>
+        <ul class="dropdown">
+          <li data-action="test">test</li>
+          <li data-action="test">test</li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <button class="menu-trigger">Настройки ▾</button>
+        <ul class="dropdown">
+          <li id="menu-open-settings">Открыть</li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <button class="menu-trigger">Помощь ▾</button>
+        <ul class="dropdown">
+          <li data-action="test">test</li>
+          <li data-action="test">test</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- 📑 Глобальная панель вкладок (тоже остаётся) -->
+  <nav class="tab-bar">
+    <div class="tabs-container" id="tabs-container">
+      <!-- Вкладки создаются динамически через TS -->
+    </div>
+  </nav>
+
+  <!-- 🖥️ Рабочая область (сюда вставляются страницы) -->
+  <main id="workspace"></main>
+
+  <!-- Точка входа -->
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

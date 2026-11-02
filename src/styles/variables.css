@@ -1,0 +1,37 @@
+:root {
+  /* Colors */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-hover: #f1f5f9;
+  --border-default: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --danger: #ef4444;
+  --menu-bg: #0044ff;
+  --menu-hover: #0033cc;
+  --tab-bg: #e2e8f0;
+  --tab-active: #f8fafc;
+
+  /* Dimensions */
+  --menu-height: 40px;
+  --tab-bar-height: 40px;
+  --ribbon-height: 90px;
+  --a4-width: 794px;
+  --a4-height: 1123px;
+  --page-padding: 72px;
+
+  /* Typography */
+  --font-ui: system-ui, -apple-system, sans-serif;
+  --font-editor: 'Calibri', 'Arial', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+
+  /* Effects */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+  --shadow-lg: 0 2px 8px rgba(0,0,0,0.15);
+  --radius: 8px;
+  --transition: 0.15s ease;
+}

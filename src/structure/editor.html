@@ -1,0 +1,111 @@
+<!-- src/structure/editor.html -->
+<div class="editor-container" data-tab-id="{{TAB_ID}}">
+  <nav class="ribbon">
+    <div class="ribbon-tabs">
+      <button class="ribbon-tab active" data-tab="home">Главная</button>
+      <button class="ribbon-tab" data-tab="insert">Вставка</button>
+      <button class="ribbon-tab" data-tab="layout">Макет</button>
+      <button class="ribbon-tab" data-tab="view">Вид</button>
+    </div>
+
+    <div class="ribbon-toolbar">
+      <!-- Режим (редактор / конструктор) -->
+      <div class="toolbar-group" data-panel="home">
+        <div class="toolbar-group-buttons">
+          <button id="mode-toggle" class="toolbar-btn toolbar-btn-primary" title="Переключить режим">🛠️ Конструктор</button>
+        </div>
+        <span class="toolbar-group-title">Режим</span>
+      </div>
+
+      <!-- Инструменты -->
+      <div class="toolbar-group" data-panel="home">
+        <button class="toolbar-btn" data-action="save-template" title="Сохранить (Ctrl+S)">💾</button>
+        <button class="toolbar-btn" data-action="open-template" title="Открыть (Ctrl+O)">📂</button>
+        <span class="toolbar-group-title">Файл</span>
+      </div>
+
+      <!-- Шрифт -->
+      <div class="toolbar-group" data-panel="home">
+        <div class="toolbar-group-buttons">
+          <!-- Выпадающий список шрифтов (пока обычный select) -->
+          <select class="font-selector" title="Шрифт">
+            <option value="Calibri">Calibri</option>
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Verdana">Verdana</option>
+          </select>
+
+          <!-- Размер шрифта -->
+              <input type="number" class="font-size-input" value="14" min="6" max="72" step="1" title="Размер шрифта" style="width:50px;">
+
+          <!-- Кнопки жирный/курсив/подчёркнутый -->
+          <button class="toolbar-btn" data-action="bold" title="Жирный"><b>B</b></button>
+          <button class="toolbar-btn" data-action="italic" title="Курсив"><i>I</i></button>
+          <button class="toolbar-btn" data-action="underline" title="Подчёркнутый"><u>U</u></button>
+
+          <!-- Регистр (выпадающий список) -->
+          <select class="case-selector" title="Регистр">
+            <option value="sentence">Как в предложениях</option>
+            <option value="lowercase">все строчные</option>
+            <option value="uppercase">ВСЕ ПРОПИСНЫЕ</option>
+            <option value="capitalize">Первая Буква Слова Заглавная</option>
+          </select>
+        </div>
+        <span class="toolbar-group-title">Шрифт</span>
+      </div>
+
+      <!-- Абзац -->
+      <div class="toolbar-group" data-panel="home">
+        <div class="toolbar-group-buttons">
+          <!-- Нумерация (выпадающий список) -->
+          <select class="list-type-selector" title="Нумерация">
+            <option value="none">Без списка</option>
+            <option value="bullet">● Маркер</option>
+            <option value="ordered">1. Нумерация</option>
+            <option value="ordered-alpha">a) Буквы</option>
+          </select>
+
+          <!-- Выравнивание (уже есть) -->
+          <button class="toolbar-btn" data-action="align-left" title="По левому краю">⫷</button>
+          <button class="toolbar-btn" data-action="align-center" title="По центру">≡</button>
+          <button class="toolbar-btn" data-action="align-right" title="По правому краю">⫸</button>
+          <button class="toolbar-btn" data-action="align-justify" title="По ширине">☰</button>
+
+          <!-- Особый отступ (выпадающий список) -->
+          <select class="indent-selector" title="Отступ">
+            <option value="none">Нет отступа</option>
+            <option value="first-line">Первая строка</option>
+            <option value="hanging">Выступ</option>
+          </select>
+        </div>
+        <span class="toolbar-group-title">Абзац</span>
+      </div>
+
+      <!-- Стили -->
+      <div class="toolbar-group" data-panel="home">
+        <div class="toolbar-group-buttons styles-scroll-container">
+          <!-- Прокручиваемый блок со стилями -->
+          <div class="styles-scroll">
+            <button class="style-preview-item">
+              <span class="style-name">Обычный текст</span>
+              <span class="style-sample" style="font-family:Calibri; font-size:12px;">Calibri 12</span>
+            </button>
+            <button class="style-preview-item active">
+              <span class="style-name">Заголовок 1</span>
+              <span class="style-sample" style="font-family:Arial; font-size:16px; font-weight:bold;">Arial 16 жир.</span>
+            </button>
+            <button class="style-preview-item">
+              <span class="style-name">Заголовок 2</span>
+              <span class="style-sample" style="font-family:Arial; font-size:14px; font-weight:bold;">Arial 14 жир.</span>
+            </button>
+            <!-- Можно добавить ещё -->
+          </div>
+        </div>
+        <span class="toolbar-group-title">Стили</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="a4-page" id="page-{{TAB_ID}}-1"></div>
+</div>

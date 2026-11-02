@@ -1,0 +1,17 @@
+/* src/styles/settings.css */
+.settings-layout {
+  padding: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-default);
+}
+.setting-item label {
+  font-weight: 500;
+  color: var(--text-primary);
+}

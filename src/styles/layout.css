@@ -1,0 +1,92 @@
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  background: var(--bg-app, #f3f4f6);
+  color: var(--text-primary, #111827);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== App Shell: Меню & Табы ===== */
+.app-menu {
+  position: relative; /* ⚠️ Обязательно для работы z-index */
+  z-index: 100;
+  flex-shrink: 0;
+  background: var(--menu-bg, #1e293b);
+  padding: 0 12px;
+  height: var(--menu-height, 40px);
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.1));
+}
+.menu-list { list-style: none; display: flex; gap: 4px; }
+.menu-trigger {
+  background: none; border: none; color: #fff; padding: 8px 12px;
+  cursor: pointer; font-size: 13px; border-radius: 4px;
+}
+.menu-trigger:hover { background: var(--menu-hover, rgba(255,255,255,0.15)); }
+
+.tab-bar {
+  position: relative; /* ⚠️ Обязательно для работы z-index */
+  z-index: 90;
+  flex-shrink: 0;
+  display: flex; align-items: center;
+  background: var(--tab-bg, #f8fafc);
+  border-bottom: 1px solid var(--border-default, #cbd5e1);
+  height: var(--tab-bar-height, 36px);
+  padding: 0 8px; gap: 4px;
+}
+.tabs-container { display: flex; flex: 1; overflow-x: auto; gap: 2px; scrollbar-width: none; }
+.tabs-container::-webkit-scrollbar { display: none; }
+
+/* ===== Workspace & View System ===== */
+#workspace {
+  flex: 1;
+  position: relative; /* Создаёт контекст наложения для .view */
+  overflow: hidden;
+  background: var(--bg-app, #f3f4f6);
+}
+
+.view {
+  display: none;
+  position: absolute;
+  inset: 0; /* Заполняет #workspace полностью */
+  overflow: hidden;
+  z-index: 1;
+}
+.view.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Home Grid (Оставил без изменений) ===== */
+.home-layout {
+  display: grid !important; /* 🔒 ломаем каскад, если widgets.css перебивает */
+  grid-template-columns: 260px minmax(0, 1fr) 260px !important; /* Кнопки | Списки | Новости */
+  grid-template-rows: 1fr;
+  grid-template-areas: 
+    "actions recent news";
+  gap: 16px;
+  width: 100%;
+  flex: 1;          /* занимает всё место, которое отдал .view */
+  min-height: 0;    /* разрешает корректно работать вложенному скроллу */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.home-actions { grid-area: actions; overflow-y: auto; }
+.home-recent  { grid-area: recent;  display: flex; flex-direction: column; gap: 16px; min-height: 0; overflow: hidden; }
+.home-news    { grid-area: news;    overflow-y: auto; }
+
+.home-actions, .home-recent, .home-news {
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  flex-shrink: 0 !important; /* отменяем старые flex-shrink: 0, которые сжимали колонки */
+}
